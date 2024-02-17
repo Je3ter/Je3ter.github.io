@@ -224,15 +224,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/10/20/AtCoder%20Regular%20Contest%20154%20D/" target="_self">
-          AtCoder Regular Contest 154 D
+        <a href="/2024/02/17/CSAPP/CSAPP%20malloclab/" target="_self">
+          CSAPP malloclab
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/20/AtCoder%20Regular%20Contest%20154%20D/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20malloclab/" target="_self">
         <div>
-          https://atcoder.jp/contests/arc154/tasks/arc154_d 题解 首先，我们需要找到序列中 1 的位置，可以利用这样的性质：仅有 pi=1p_i=1pi​=1 满足对于任意的 jjj，pi+pi&gt;pjp_i+p_i&gt;p_jpi​+pi​&gt;pj​ 都不成立。所以可以利用 n−1n-1n−1 次询问找到 111 的位置。 然后，考虑 px+1&
+          首先先跑一遍课本上的代码，内存利用率和吞吐量都不是很好。尤其是吞吐量，非常糟糕。 ![图1](/img/malloclab 1.png) e9.17 将首次适配搜索改为下一次适配搜索。 为此，定义 rover 指向上一次分配的块。在 mm_init 中，rover 初始化为 heap_listp。编写 next_fit 用于实现下一次适配搜索算法：从 rover 开始，一直找到结尾块。再从 hea
         </div>
       </a>
 
@@ -240,8 +240,451 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-20 13:20" pubdate>
-              2023-10-20
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">#虚拟内存</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/17/CSAPP/CSAPP%20attacklab/" target="_self">
+          CSAPP attacklab
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20attacklab/" target="_self">
+        <div>
+          Phase 1 ![图1](/img/attacklab 1.png) getbuf 的栈帧如图所示，只需先输入 40 个字节，然后输入 touch1 的起始地址即可。 ![图2](/img/attacklab 2.png) Phase 2 需要在缓冲区内输入一段指令，从 getbuf 返回时开始执行这段指令。这段指令需要向 touch2 传入 cookie，并将返回地址设置为 touch2。 指
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/%E6%B1%87%E7%BC%96/">#汇编</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/17/CSAPP/CSAPP%20bomblab/" target="_self">
+          CSAPP bomblab
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20bomblab/" target="_self">
+        <div>
+          一个需要注意的地方是除了主函数以外的函数都不支持单步调试，需要加断点。否则即使用 step 也会直接运行到函数返回（通常会导致炸弹爆炸）。 phase 1 ![图1](/img/bomblab 1.png) 0x402400 中存放的就是目标字符串。 phase 2 ![图2](/img/bomblab 2.png) 记 %rsp 存放的地址为 0x0。 phase_2+14：检查 0x0 处存的
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/%E6%B1%87%E7%BC%96/">#汇编</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/17/CSAPP/CSAPP%20cachelab/" target="_self">
+          CSAPP cachelab
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20cachelab/" target="_self">
+        <div>
+          Part A 由于不关心具体的块内偏移，所以 cache 可以这样设计：作为一个二维数组，第一维代表组号，第二维代表组内的行号，存放标记位和上一次访问的时间。每次操作时，读取和存放是等价的，直接在对应组号内遍历所有标记位，看是否有对应上的。否则看有无空缺，或是替换掉某一行。修改和上面类似，只需要添加一次命中记数就可以了。 读入命令行参数是一个比较陌生的话题： 1234567891011121314
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/cache/">#cache</a>
+            
+              <a href="/tags/%E5%88%86%E5%9D%97/">#分块</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/17/CSAPP/CSAPP%20datalab/" target="_self">
+          CSAPP datalab
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20datalab/" target="_self">
+        <div>
+          bitXor 利用 x⊕y=(x&amp;∼y)∣(∼x&amp;y)x\oplus y=(x\&amp;\sim y)|(\sim x\&amp; y)x⊕y=(x&amp;∼y)∣(∼x&amp;y) 和 x∣y=∼(∼x&amp;∼y)x|y=\sim(\sim x\&amp;\sim y)x∣y=∼(∼x&amp;∼y) 容易实现。 tmin TMIN=0x8000 0000。 isTma
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/">#位运算</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/17/CSAPP/CSAPP%20e10.9/" target="_self">
+          CSAPP attacklab
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20e10.9/" target="_self">
+        <div>
+          仔细考虑这条命令：linux&gt; fstatcheck 3 &lt; foo.txt 如果经过一点思考，可能会产生这样错误的结论：shell 打开 foo.txt 并分配了文件描述符 3。使用 fork 和 execve 创建了子进程 fstatcheck，它具有与 shell 相同的文件描述符表，即 3 同样引用 foo.txt。因此 fstatcheck 使用 Fstat 获取 foo.t
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/shell/">#shell</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/17/CSAPP/CSAPP%20e3.4/" target="_self">
+          CSAPP e3.4
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20e3.4/" target="_self">
+        <div>
+          练习题3.4 ![图1](/img/e3.4 1.png) 题目中提到“当执行强制类型转换既涉及大小变化又涉及C语言中符号变化时，操作应该先改变大小”，我们通过一个例子来说明。 考虑下面这段代码 1234567#include &lt;stdio.h&gt;int main()&#123;    char a=0xff;    printf(&quot;%u&quot;,(unsigned)a);
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/%E6%B1%87%E7%BC%96/">#汇编</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/11/30/ACM/Codeforces%20Round%20911%20(Div.%202)/" target="_self">
+          Codeforces Round 911 (Div. 2)
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/30/ACM/Codeforces%20Round%20911%20(Div.%202)/" target="_self">
+        <div>
+          https://codeforces.com/contest/1900 D. Small GCD 题意 定义 f(x,y,z)f(x,y,z)f(x,y,z) 为 x,y,zx,y,zx,y,z 中较小两数的 gcd⁡\gcdgcd。给定数组 aaa ，求所有三元组的 fff 之和。 数据范围：3≤n≤8×104,1≤ai≤1053\leq n\leq 8\times10^4,1\leq a_i\
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-30 15:36" pubdate>
+              2023-11-30
             </time>
           </div>
         
@@ -271,7 +714,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E4%BA%A4%E4%BA%92/">#交互</a>
+              <a href="/tags/%E5%AE%B9%E6%96%A5/">#容斥</a>
             
           </div>
         
@@ -285,15 +728,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/10/15/AtCoder%20Regular%20Contest%20159%20C/" target="_self">
-          AtCoder Regular Contest 159 C
+        <a href="/2023/11/29/ACM/CodeTON%20Round%207%20(Div.%201%20+%20Div.%202,%20Rated,%20Prizes!)/" target="_self">
+          CodeTON Round 7 (Div. 1 + Div. 2, Rated, Prizes!)
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/15/AtCoder%20Regular%20Contest%20159%20C/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/29/ACM/CodeTON%20Round%207%20(Div.%201%20+%20Div.%202,%20Rated,%20Prizes!)/" target="_self">
         <div>
-          https://atcoder.jp/contests/arc159/tasks/arc159_c 题解 当最终每个数都一样时，总和一定是 nnn 的倍数。而每次操作都是给总和加上了 s=n(n+1)2s=\dfrac{n(n+1)}{2}s=2n(n+1)​。所以如果初始的总和 sumsumsum 和 sum+ssum+ssum+s 都不是 nnn 的倍数那么一定无解。 否则一定有解。考虑两次操
+          https://codeforces.com/contest/1896 D. Ones and Twos 题意 给定一个数组 aaa，只含有 1,21,21,2。每次询问有两种类型：  “1 s” 查询是否有一个子数组的和为 sss。 “2 i v” 将 aia_iai​ 改为 vvv。  数据范围：1≤n,q≤1051\leq n,q\leq 10^51≤n,q≤105。 题解 注意到对于原数组
         </div>
       </a>
 
@@ -301,8 +744,62 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-15 15:47" pubdate>
-              2023-10-15
+            <time datetime="2023-11-29 14:26" pubdate>
+              2023-11-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/11/28/ACM/Educational%20Codeforces%20Round%20158%20(Rated%20for%20Div.%202)/" target="_self">
+          Educational Codeforces Round 158 (Rated for Div. 2)
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/28/ACM/Educational%20Codeforces%20Round%20158%20(Rated%20for%20Div.%202)/" target="_self">
+        <div>
+          https://codeforces.com/contest/1901 C. Add, Divide and Floor 题意 给定一个长度为 nnn 的数组 aaa，每次操作可以选择一个数 xxx，然后对所有的 aia_iai​，令 ai←⌊ai+x2⌋a_i\leftarrow \lfloor\dfrac{a_i+x}{2}\rfloorai​←⌊2ai​+x​⌋。求最小操作次数使得 aaa
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-28 18:41" pubdate>
+              2023-11-28
             </time>
           </div>
         
@@ -332,524 +829,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%80%9D%E7%BB%B4/">#思维</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/">#贪心</a>
             
           </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/10/10/The%202023%20CCPC%20Online%20Contest/" target="_self">
-          The 2023 CCPC Online Contest
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/10/The%202023%20CCPC%20Online%20Contest/" target="_self">
-        <div>
-          https://codeforces.com/gym/104651 A. Almost Prefix Concatenation 题解 容易发现对于固定的起始位置 iii，符合almost prefix的结束位置一定是一段连续的区间。具体地，我们求出 lcp（最长公共前缀），然后往后移动一位，然后再求一次lcp，得到的就是最远的结束位置，记为 lcpilcp_ilcpi​。 题目中要求平方和，我们
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-10 13:30" pubdate>
-              2023-10-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/dp/">#dp</a>
-            
-              <a href="/tags/%E5%93%88%E5%B8%8C/">#哈希</a>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/">#计算几何</a>
-            
-              <a href="/tags/2023CCPC/">#2023CCPC</a>
-            
-              <a href="/tags/%E4%B8%89%E5%88%86/">#三分</a>
-            
-              <a href="/tags/gcd/">#gcd</a>
-            
-              <a href="/tags/%E8%A1%A5%E5%9B%BE%E6%9C%80%E7%9F%AD%E8%B7%AF/">#补图最短路</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/10/08/Codeforces%20Round%20901%20(Div.%201)/" target="_self">
-          Codeforces Round 901 (Div. 1)
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/08/Codeforces%20Round%20901%20(Div.%201)/" target="_self">
-        <div>
-          https://codeforces.com/contest/1874 C. Jellyfish and EVA 题意 给出一张DAG（保证每个点只连向编号比自己大的结点）。有两个人，初始在 111 号结点，希望走到 nnn 号结点。每次其中一人随机选择一个后继结点，另一个人可以安排自己选择的结点。若两人选择同一个后继结点，则移动到该结点，否则将选择的两个结点都删除。若没有可选的后继结点，就停留在
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-08 21:30" pubdate>
-              2023-10-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%A6%82%E7%8E%87dp/">#概率dp</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/10/07/The%202022%20ICPC%20Asia%20Hangzhou%20Regional%20Programming%20Contest/" target="_self">
-          The 2022 ICPC Asia Hangzhou Regional Programming Contest
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/07/The%202022%20ICPC%20Asia%20Hangzhou%20Regional%20Programming%20Contest/" target="_self">
-        <div>
-          https://codeforces.com/gym/104090 C. No Bug No Game 题解 显然，部分被放入的物品只有一个。我们可以枚举物品 iii 和它被放入的体积。然后枚举它前面的物品一共占用的体积 jjj，就能得到后面的物品一共占用的体积 k−i−jk-i-jk−i−j。对前缀和后缀分别做一遍背包就可以了。 G. Subgraph Isomorphism 题解 当 m=n−
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-07 19:00" pubdate>
-              2023-10-07
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9A%8F%E6%9C%BA/">#随机</a>
-            
-              <a href="/tags/2022ICPC/">#2022ICPC</a>
-            
-              <a href="/tags/%E8%83%8C%E5%8C%85/">#背包</a>
-            
-              <a href="/tags/%E6%A0%91%E5%93%88%E5%B8%8C/">#树哈希</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/09/29/The%202022%20ICPC%20Asia%20Xian%20Regional%20Contest/" target="_self">
-          The 2022 ICPC Asia Xian Regional Contest
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/29/The%202022%20ICPC%20Asia%20Xian%20Regional%20Contest/" target="_self">
-        <div>
-          https://codeforces.com/gym/104077 B. Cells Coloring 题解 当我们选定一个 kkk 后，所有每行每列选择不超过 kkk 个的方案数都是合法的。所以我们可以建立网络流模型：源点向每行连容量为 kkk 的边，若第 iii 行第 jjj 列为空，第 iii 行向第 jjj 列连容量为 111 的边，每列向汇点连容量为 kkk 的边。 我们从小到大增加 k
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-29 14:15" pubdate>
-              2023-09-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%80%8D%E5%A2%9E/">#倍增</a>
-            
-              <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/">#网络流</a>
-            
-              <a href="/tags/2022ICPC/">#2022ICPC</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/09/26/OSTEP04/" target="_self">
-          OSTEP04
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/26/OSTEP04/" target="_self">
-        <div>
-          如果运行程序失败可以尝试下面这条命令： 1python3 process-run.py -h Q1 100%。因为两个程序都只占用CPU。所以CPU运行时间=总执行时间。  Q2 （似乎没有说明IO操作耗时为 555 个时间单位？它可以用 -L 指定，但是命令中也没有给出。根据后面的例子，应该是默认耗时为 555 个时间单位） 11。具体见下图：  注意到的是io执行和io结束各占用了一个时间单位
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-26 18:30" pubdate>
-              2023-09-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/OS/" class="category-chain-item">OS</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Progress/">#Progress</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/09/26/The%202022%20ICPC%20Asia%20Nanjing%20Regional%20Contest/" target="_self">
-          The 2022 ICPC Asia Nanjing Regional Contest
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/26/The%202022%20ICPC%20Asia%20Nanjing%20Regional%20Contest/" target="_self">
-        <div>
-          https://codeforces.com/gym/104128 A. Stop, Yesterday Please No More 题解 首先不考虑这个洞。我们不模拟袋鼠的移动，而是模拟边界的移动，最终留下的袋鼠一定位于中间的一块矩形区域，也有可能没有袋鼠剩下，后者可以特判掉。 然后考虑这个洞。同样的，我们模拟洞的移动，看它能“吃掉“几只袋鼠。具体地，我们求出每一步洞相对于初始位置的偏移量，然
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-26 09:30" pubdate>
-              2023-09-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/dp/">#dp</a>
-            
-              <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/">#前缀和</a>
-            
-              <a href="/tags/2022ICPC/">#2022ICPC</a>
-            
-              <a href="/tags/%E6%A8%A1%E6%8B%9F/">#模拟</a>
-            
-              <a href="/tags/%E4%BA%8C%E5%88%86/">#二分</a>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/">#计算几何</a>
-            
-              <a href="/tags/%E9%95%BF%E9%93%BE%E5%89%96%E5%88%86/">#长链剖分</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/09/24/AtCoder%20Beginner%20Contest%20320/" target="_self">
-          AtCoder Beginner Contest 320
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/24/AtCoder%20Beginner%20Contest%20320/" target="_self">
-        <div>
-          https://atcoder.jp/contests/abc320 F - Fuel Round Trip 题意 题意很简单就是要在从 000 位置走到 XnX_nXn​ 位置，然后倒回来回到 000 位置。并且每走一格需要 111 的油，油箱最多携带 HHH 的油，途中有一些只能使用一次的加油站，选择加油只能强制花费 pip_ipi​ 元加入 fif_ifi​ 的油，装不下只能抛弃。现在问你从
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-24 19:30" pubdate>
-              2023-09-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/dp/">#dp</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/09/19/AtCoder%20Regular%20Contest%20165/" target="_self">
-          AtCoder Regular Contest 165
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/19/AtCoder%20Regular%20Contest%20165/" target="_self">
-        <div>
-          https://atcoder.jp/contests/arc165 D - Substring Comparison 题意 给定一个长度为 nnn 的序列 xxx，给出 mmm 组限制。每组限制 (ai,bi,ci,di)(a_i,b_i,c_i,d_i)(ai​,bi​,ci​,di​) 表示 xai,ai+1,⋯ ,bix_{a_i,a_{i+1},\cdots,b_i}xai​,ai+1​
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-19 14:00" pubdate>
-              2023-09-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
         
       </div>
     </article>
@@ -859,7 +841,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Je3ter">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一个需要注意的地方是除了主函数以外的函数都不支持单步调试，需要加断点。否则即使用 step 也会直接运行到函数返回（通常会导致炸弹爆炸）。 phase 1 ![图1](&#x2F;img&#x2F;bomblab 1.png) 0x402400 中存放的就是目标字符串。 phase 2 ![图2](&#x2F;img&#x2F;bomblab 2.png) 记 %rsp 存放的地址为 0x0。 phase_2+14：检查 0x0 处存的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP bomblab">
+<meta property="og:url" content="https://je3ter.github.io/2024/02/17/CSAPP/CSAPP%20bomblab/index.html">
+<meta property="og:site_name" content="Je3ter&#39;s Blog">
+<meta property="og:description" content="一个需要注意的地方是除了主函数以外的函数都不支持单步调试，需要加断点。否则即使用 step 也会直接运行到函数返回（通常会导致炸弹爆炸）。 phase 1 ![图1](&#x2F;img&#x2F;bomblab 1.png) 0x402400 中存放的就是目标字符串。 phase 2 ![图2](&#x2F;img&#x2F;bomblab 2.png) 记 %rsp 存放的地址为 0x0。 phase_2+14：检查 0x0 处存的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-17T02:11:39.089Z">
+<meta property="article:modified_time" content="2024-02-17T02:01:58.247Z">
+<meta property="article:author" content="Je3ter">
+<meta property="article:tag" content="CSAPP">
+<meta property="article:tag" content="汇编">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>CSAPP bomblab - Je3ter&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"je3ter.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Je3ter</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CSAPP bomblab"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-17 10:11" pubdate>
+          2024年2月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSAPP bomblab</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>一个需要注意的地方是除了主函数以外的函数都不支持单步调试，需要加断点。否则即使用 step 也会直接运行到函数返回（通常会导致炸弹爆炸）。</p>
+<h2 id="phase-1">phase 1</h2>
+<p>![图1](/img/bomblab 1.png)</p>
+<p>0x402400 中存放的就是目标字符串。</p>
+<h2 id="phase-2">phase 2</h2>
+<p>![图2](/img/bomblab 2.png)</p>
+<p>记 %rsp 存放的地址为 0x0。</p>
+<p>phase_2+14：检查 0x0 处存的值是否为 1。</p>
+<p>phase_2+52：将 %rbx 指向 0x4 的位置，将 %rbp 指向 0x18 的位置。</p>
+<p>phase_2+27：将 0x0 处存的值（即 1）放入 %eax，%eax 内存放的元素变为原来的两倍，比较它和 %rbx 所指位置存的指是否相等。</p>
+<p>phase_2+41：%rbx 移动 4 个字节，比较和 %rbp 是否相等，后回到 phase_2+27。</p>
+<p>容易得到从 0x0 到 0x14 存放的 6 个数。</p>
+<h2 id="phase-3">phase_3</h2>
+<p>![图3](/img/bomblab 3.png)</p>
+<p>phase_3+29 说明需要输入大于一个数（和下一题类似，可以查看0x4025cf）。phase_3+46 说明输入的第一个数不能大于 7，并且根据它跳转到对应的位置。后面的每个分支都是对 %eax 赋值。phase_3+123 需要输入的第二个数与 %rax 相等。</p>
+<p>查看 0x402470 存放的内容</p>
+<p>![图4](/img/bomblab 4.png)</p>
+<p>发现存放的就是每个分支的地址。所以输入一组对应的数就可以了。</p>
+<h2 id="phase-4">phase_4</h2>
+<p>![图5](/img/bomblab 5.png)</p>
+<p>查看 0x4025cf 可以确定需要输入两个整数。</p>
+<p>![图6](/img/bomblab 6.png)</p>
+<p>阅读代码可以发现，进入 func4 时，%rcx 中是第二个输入，%rdx 中是 0xe，%esi 中是 0x0，%edi 中是 第一个输入。要求：第二个输入为 0，func4 返回值为 0。</p>
+<p>![图7](/img/bomblab 7.png)</p>
+<p>阅读代码可以发现，只要第一个参数恰好等于 func4+17 处 %rcx 中的值，则可以避免递归，直接返回 0。</p>
+<h2 id="phase-5">phase_5</h2>
+<p>![图8](/img/bomblab 8.png)</p>
+<p>发现我们需要输入一个长度为 6 的字符串。</p>
+<p>查看 string_length 可以确定 %rdx 用于保存我们输入字符串的首地址。</p>
+<p>![图9](/img/bomblab 9.png)</p>
+<p>查看 0x40245e 可以确定目标字符串是 flyers。</p>
+<p>![图10](/img/bomblab 10.png)</p>
+<p>查看 0x4024b0 可以得到一个字符数组。</p>
+<p>![图11](/img/bomblab 11.png)</p>
+<p>阅读代码，可以发现：我们输入的字符串的最低一个字节被用于在字符数组中索引对应的字符。所以只需要根据目标字符串确定索引，即输入字符串的最低一个字节。</p>
+<h2 id="phase-6">phase_6</h2>
+<p>![图12](/img/bomblab 12.png)</p>
+<p>![图13](/img/bomblab 13.png)</p>
+<p>直到 phase_6+121，代码在检查输入的六个数：要求大于 0 小于等于 6，且各不相同。所以，输入的是 1-6 的一个排列。同时，将每个数 x 映射为了 7-x。</p>
+<p>查看 0x6032d0，发现存放的是一张链表。前 8 个字节存放一个数，后 8 个字节存放一个指针，指向下一个结点。</p>
+<p>![图14](/img/bomblab 14.png)</p>
+<p>phase_6+130 到 phase_6 +181 根据输入的每个数分配结点地址。即 %rsp+0x20 存放第一个数对应的结点地址，%rsp+0x28 存放第二个数对应的结点地址，依此类推。</p>
+<p>phase_6+183 到 phase_6+220 将每个结点的指针指向下一个结点，构建链表。</p>
+<p>phase_6+222 到 phase_6+257 比较每个结点，要求前一个结点的数值大于后一个结点。</p>
+<p>根据链表中存放的数，即可确定结点的编号，再用 7 减去编号，就是我们要输入的数。</p>
+<p>![图15](/img/bomblab 15.png)</p>
+<hr>
+<p><strong>secret_phase</strong></p>
+<p>注意到给出的函数中有这样一段话，在暗示可能还有一个隐藏的炸弹。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* Wow, they got it!  But isn&#x27;t something... missing?  Perhaps</span><br><span class="hljs-comment"> * something they overlooked?  Mua ha ha ha ha! */</span><br></code></pre></td></tr></table></figure>
+<p>将整个文件进行反汇编，可以找到 fun7 和 secret_phase。</p>
+<p>![图16](/img/bomblab 16.png)</p>
+<p>![图17](/img/bomblab 17.png)</p>
+<p>查找 secret_phase，发现它在 phase_defused 被调用。</p>
+<p>![图18](/img/bomblab 18.png)</p>
+<p>查看里面出现的地址，得到</p>
+<p>![图19](/img/bomblab 19.png)</p>
+<p>这里需要输入两个数字和一个字符串，也就是说，要在一个输入两个数字的关卡再输入 DrEvil 就可以进入隐藏关。</p>
+<p>运行后查看，确认为第四关。</p>
+<p>![1705384019396](/img/bomblab 20.png)</p>
+<p>查看 secret_phase 出现的地址，发现构成了一棵二叉搜索树</p>
+<p>![图21](/img/bomblab 21.png)</p>
+<p>画出对应的树</p>
+<p>![图22](/img/bomblab 22.png)</p>
+<p>同时，写出 fun7 对应的代码，这是一个二叉树上搜索的过程：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">fun7</span><span class="hljs-params">(Tree* rdi, <span class="hljs-type">int</span> esi)</span> &#123;<br>    <span class="hljs-keyword">if</span> (!rdi)   <br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; <br>    <span class="hljs-keyword">if</span> (rdi-&gt;val == esi)   <br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;      <br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rdi-&gt;val &lt; esi)       <br>        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * fun7(rdi -&gt; right, esi) + <span class="hljs-number">1</span>; <br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * fun7(rdi -&gt; left, esi); <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>考虑代码返回值的二进制表示：从低位向高位，0代表进入左子树，1代表进入右子树。要求 fun7 返回值为 22，容易找到对应的数。</p>
+<hr>
+<p>![图23](/img/bomblab 23.png)</p>
+<p>撒花！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/system/" class="category-chain-item">system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CSAPP/">#CSAPP</a>
+      
+        <a href="/tags/%E6%B1%87%E7%BC%96/">#汇编</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CSAPP bomblab</div>
+      <div>https://je3ter.github.io/2024/02/17/CSAPP/CSAPP bomblab/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Je3ter</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/02/17/CSAPP/CSAPP%20attacklab/" title="CSAPP attacklab">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CSAPP attacklab</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/17/CSAPP/CSAPP%20cachelab/" title="CSAPP cachelab">
+                        <span class="hidden-mobile">CSAPP cachelab</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

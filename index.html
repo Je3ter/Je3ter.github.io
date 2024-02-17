@@ -224,15 +224,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/11/28/Educational%20Codeforces%20Round%20158%20(Rated%20for%20Div.%202)/" target="_self">
-          Educational Codeforces Round 158 (Rated for Div. 2)
+        <a href="/2024/02/17/CSAPP/CSAPP%20%E5%B0%8F%E7%BB%93/" target="_self">
+          
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/28/Educational%20Codeforces%20Round%20158%20(Rated%20for%20Div.%202)/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20%E5%B0%8F%E7%BB%93/" target="_self">
         <div>
-          https://codeforces.com/contest/1901 C. Add, Divide and Floor 题意 给定一个长度为 nnn 的数组 aaa，每次操作可以选择一个数 xxx，然后对所有的 aia_iai​，令 ai←⌊ai+x2⌋a_i\leftarrow \lfloor\dfrac{a_i+x}{2}\rfloorai​←⌊2ai​+x​⌋。求最小操作次数使得 aaa
+          花了大概一个寒假的时间，读完了 CSAPP 这本书，看完了这门课的视频，并且完成了部分家庭作业和七个 lab。 读完这本书有一些收获，让我接触到了很多未曾涉足的方面，让我明白自己还有哪些东西需要继续学习，算是为未来铺路的一门导论课程（不过好像有点晚了？）。 简要评价一下各个 lab 的体验： data lab 整数部分涉及到了很多位运算的技巧，有一道问题把我难住了。浮点数部分没有什么意思，基本按照
         </div>
       </a>
 
@@ -240,8 +240,41 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-28 18:41" pubdate>
-              2023-11-28
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2024/02/17/CSAPP/CSAPP%20shelllab/" target="_self">
+          CSAPP shelllab
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20shelllab/" target="_self">
+        <div>
+          虽然信号是一个比较陌生的话题，但其实大部分需要用的技巧都在课本和 handout 中给出了，所以并不是特别困难。 eval 基本可以参考书上的来写。只需要注意创建一个新进程时需要给它分配一个新的进程组，事实上 handout 中已经指出了这一点。 builtin_cmd 直接判断就可以了。比较让我纠结的是执行 quit 时是否需要先回收所有子进程，看起来好像不需要的样子。 do_bgfg 主要难度
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
             </time>
           </div>
         
@@ -256,7 +289,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  <a href="/categories/system/" class="category-chain-item">system</a>
   
   
 
@@ -271,7 +304,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E8%B4%AA%E5%BF%83/">#贪心</a>
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/%E4%BF%A1%E5%8F%B7/">#信号</a>
+            
+              <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">#并发编程</a>
             
           </div>
         
@@ -285,15 +322,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/11/26/Codeforces%20Round%20910%20(Div.%202)/" target="_self">
-          Codeforces Round 910 (Div. 2)
+        <a href="/2024/02/17/CSAPP/CSAPP%20e5.5/" target="_self">
+          CSAPP e5.5
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/26/Codeforces%20Round%20910%20(Div.%202)/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20e5.5/" target="_self">
         <div>
-          https://codeforces.com/contest/1898 B. Milena and Admirer 题意 给定一个长度为 nnn 的数组 aaa。每次操作可以选择一个 aia_iai​，并选择一个 xxx 满足 1≤x&lt;ai1\leq x&lt;a_i1≤x&lt;ai​。用 x,ai−xx,a_i-xx,ai​−x 替换 aia_iai​。求最小操作次数，使得 aaa 单调
+          练习题5.5 ![图1](/img/e5.5 1.png) ![图2](/img/e5.5 2.png) 这里可以把  result += a[i]*xpwr  拆分为 tmp=a[i]*xpwr,result+=tmp。这是可以并行的，只需要把 result 放在下一次迭代时更新就可以了。下面这张图很好地说明了这一点： ![图3](/img/e5.5 3.png)
         </div>
       </a>
 
@@ -301,8 +338,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-26 13:54" pubdate>
-              2023-11-26
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
             </time>
           </div>
         
@@ -317,7 +354,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  <a href="/categories/system/" class="category-chain-item">system</a>
   
   
 
@@ -332,7 +369,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E8%B4%AA%E5%BF%83/">#贪心</a>
+              <a href="/tags/CSAPP/">#CSAPP</a>
             
           </div>
         
@@ -346,15 +383,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/11/23/AtCoder%20Beginner%20Contest%20219/" target="_self">
-          AtCoder Beginner Contest 219
+        <a href="/2024/02/17/CSAPP/CSAPP%20hw10/" target="_self">
+          CSAPP hw10
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/23/AtCoder%20Beginner%20Contest%20219/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20hw10/" target="_self">
         <div>
-          https://atcoder.jp/contests/abc219 F - Cleaning Robot 题意 在一张网格图中，给定一个指令序列。问重复 kkk 次一共能访问到多少个不同的点。 数据范围：1≤∣s∣≤2×105,1≤k≤10121\leq |s|\leq 2\times10^5,1\leq k\leq 10^{12}1≤∣s∣≤2×105,1≤k≤1012。 题解 先模拟一遍序列
+          10.6 fd2 = 4 12345678910111213一个比较严谨的解答：1.若成功打开“foo.txt”：--&gt;1.1若成功打开“baz.txt”： 输出“4\n”--&gt;1.2若未能成功打开“baz.txt”： 输出“-1\n”2.若未能成功打开“foo.txt”：--&gt;2.1若成功打开“baz.txt”： 输出“3\n”--&gt;2.2若未能成功打开“baz.txt”
         </div>
       </a>
 
@@ -362,8 +399,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-23 13:20" pubdate>
-              2023-11-23
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
             </time>
           </div>
         
@@ -378,7 +415,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  <a href="/categories/system/" class="category-chain-item">system</a>
   
   
 
@@ -393,7 +430,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%A0%B9%E5%8F%B7%E5%88%86%E6%B2%BB/">#根号分治</a>
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/%E6%96%87%E4%BB%B6/">#文件</a>
             
           </div>
         
@@ -407,15 +446,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/11/21/AtCoder%20Beginner%20Contest%20218/" target="_self">
-          AtCoder Beginner Contest 218
+        <a href="/2024/02/17/CSAPP/CSAPP%20hw3/" target="_self">
+          CSAPP hw3
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/21/AtCoder%20Beginner%20Contest%20218/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20hw3/" target="_self">
         <div>
-          https://atcoder.jp/contests/abc218 F - Blocked Roads 题意 给定一张 nnn 个点 mmm 条边的有向图。对于 i=1,2,⋯ ,mi=1,2,\cdots,mi=1,2,⋯,m，求删除第 iii 条边后 111 到 nnn 的最短路。 数据范围：2≤n≤400,1≤m≤n×(n−1)2\leq n\leq400,1\leq m\leq n\ti
+          3.58 123y-=z;x*=y;return ((y&lt;&lt;63)&gt;&gt;63)^x 3.59 p=xy=(xhyl+yhxl)264+xlyl\begin{aligned} p &amp;=xy\\ &amp;=(x_hy_l+y_hx_l)2^{64}+x_ly_l \end{aligned} p​=xy=(xh​yl​+yh​xl​)264+xl​yl​​ 记 xlyl=
         </div>
       </a>
 
@@ -423,8 +462,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-21 14:36" pubdate>
-              2023-11-21
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
             </time>
           </div>
         
@@ -439,7 +478,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  <a href="/categories/system/" class="category-chain-item">system</a>
   
   
 
@@ -454,9 +493,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/">#最短路</a>
+              <a href="/tags/CSAPP/">#CSAPP</a>
             
-              <a href="/tags/%E5%AF%B9%E9%A1%B6%E5%A0%86/">#对顶堆</a>
+              <a href="/tags/%E6%B1%87%E7%BC%96/">#汇编</a>
             
           </div>
         
@@ -470,15 +509,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/11/21/AtCoder%20Beginner%20Contest%20217/" target="_self">
-          AtCoder Beginner Contest 217
+        <a href="/2024/02/17/CSAPP/CSAPP%20hw2/" target="_self">
+          CSAPP hw2
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/21/AtCoder%20Beginner%20Contest%20217/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20hw2/" target="_self">
         <div>
-          https://atcoder.jp/contests/abc217 F - Make Pair 题意 有 2n2n2n 个学生从左到右站成一排，有 mmm 对学生 (a,b)(a,b)(a,b) 关系好。每次可以选择一对相邻且关系好的学生出队，并且他们左右的人被视相邻。求所有学生都出队的方案数，答案对 998244353998244353998244353 取模。 数据范围：1≤n≤2001\l
+          2.55 12345678910111213141516171819202122232425#include &lt;stdio.h&gt;typedef unsigned char *byte_pointer;void show_bytes(byte_pointer start, size_t len)&#123;    size_t i;    for(i=0;i&lt;len;i++) pr
         </div>
       </a>
 
@@ -486,8 +525,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-21 14:23" pubdate>
-              2023-11-21
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
             </time>
           </div>
         
@@ -502,7 +541,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  <a href="/categories/system/" class="category-chain-item">system</a>
   
   
 
@@ -517,7 +556,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/dp/">#dp</a>
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/">#位运算</a>
             
           </div>
         
@@ -531,15 +572,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/11/20/AtCoder%20Beginner%20Contest%20216/" target="_self">
-          AtCoder Beginner Contest 216
+        <a href="/2024/02/17/CSAPP/CSAPP%20hw8/" target="_self">
+          CSAPP hw8
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/20/AtCoder%20Beginner%20Contest%20216/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20hw8/" target="_self">
         <div>
-          https://atcoder.jp/contests/abc216 F - Max Sum Counting 题意 给定长度为 nnn 的数组 a,ba,ba,b。求满足 max⁡i∈Sai≥∑i∈Sbi\max_{i\in S} a_i\geq \sum_{i\in S}b_imaxi∈S​ai​≥∑i∈S​bi​ 的非空集合 sss 的数量。 数据范围：1≤n,ai,bi≤50001\leq
+          8.9 否 是 是 是 是 是 8.10 setjump: C longjmp: B execve: B fork: A 8.11 4 8.12 8 8.13 x=4 x=2 x=3 8.14 3 8.15 5 8.16 counter = 2 8.17 Hello 1 Bye 0 2 Bye Hello 1 0 Bye 2 Bye Hello 0 1 Bye 2 Bye 8.18 A C E 8
         </div>
       </a>
 
@@ -547,8 +588,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-20 16:11" pubdate>
-              2023-11-20
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
             </time>
           </div>
         
@@ -563,7 +604,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  <a href="/categories/system/" class="category-chain-item">system</a>
   
   
 
@@ -578,9 +619,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/dp/">#dp</a>
+              <a href="/tags/CSAPP/">#CSAPP</a>
             
-              <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/">#差分约束</a>
+              <a href="/tags/%E4%BF%A1%E5%8F%B7/">#信号</a>
             
           </div>
         
@@ -594,15 +635,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/11/19/AtCoder%20Beginner%20Contest%20215/" target="_self">
-          AtCoder Beginner Contest 215
+        <a href="/2024/02/17/CSAPP/CSAPP%20hw6/" target="_self">
+          CSAPP hw6
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/19/AtCoder%20Beginner%20Contest%20215/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20hw6/" target="_self">
         <div>
-          https://atcoder.jp/contests/abc215 F - Dist Max 2 题意 给定 nnn 个点 (x,y)(x,y)(x,y)。定义点 iii 与点 jjj 的距离为 min⁡(∣xi−xj∣,∣yi−yj∣)\min(|x_i-x_j|,|y_i-y_j|)min(∣xi​−xj​∣,∣yi​−yj​∣)。求两点间的最大距离。 数据范围：2≤n≤2×1052\leq
+          6.22 xr(r−xr)=−r2x2+r2xxr(r-xr)=-r^2x^2+r^2xxr(r−xr)=−r2x2+r2x r=0.5r=0.5r=0.5 时容量最大 6.23 4+115000×60×1000×12+1800×115000×60×1000=6.005ms4+\frac{1}{15000}\times60\times1000\times\frac{1}{2}+\frac{1}{8
         </div>
       </a>
 
@@ -610,8 +651,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-19 15:10" pubdate>
-              2023-11-19
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
             </time>
           </div>
         
@@ -626,7 +667,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  <a href="/categories/system/" class="category-chain-item">system</a>
   
   
 
@@ -641,7 +682,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E4%BA%8C%E5%88%86/">#二分</a>
+              <a href="/tags/CSAPP/">#CSAPP</a>
+            
+              <a href="/tags/cache/">#cache</a>
             
           </div>
         
@@ -655,15 +698,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/11/16/AtCoder%20Beginner%20Contest%20214/" target="_self">
-          AtCoder Beginner Contest 214
+        <a href="/2024/02/17/CSAPP/CSAPP%20hw9/" target="_self">
+          CSAPP hw9
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/16/AtCoder%20Beginner%20Contest%20214/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20hw9/" target="_self">
         <div>
-          https://atcoder.jp/contests/abc214 E - Packing Under Range Regulations 题意 有 10910^9109 个盒子，每个盒子可以放一个小球。现在要求将 nnn 个球放入盒子内，第 iii 个球要放在 lil_ili​ 到 rir_iri​ 个盒子内。要求判断是否可行。 数据范围：1≤n≤2×1051\leq n\leq 2\time
+          9.11 A 00 0010 0111 1100 B 0x9 0x1 0x2 否 否 0x17 C 0101 1111 1100 D 0x0 0xf 0x17 否 9.12 A 00 0011 1010 1001 B 0xe 0x2 0x3 否 否 0x11 C 0100 0110 1001 D 0x1 0xa 0x11 否 9.13 A 00 0000 0100 0000 B 0x1 0x1 0
         </div>
       </a>
 
@@ -671,8 +714,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-16 13:50" pubdate>
-              2023-11-16
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
             </time>
           </div>
         
@@ -687,7 +730,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  <a href="/categories/system/" class="category-chain-item">system</a>
   
   
 
@@ -702,11 +745,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/dp/">#dp</a>
+              <a href="/tags/CSAPP/">#CSAPP</a>
             
-              <a href="/tags/%E8%B4%AA%E5%BF%83/">#贪心</a>
-            
-              <a href="/tags/%E5%AE%B9%E6%96%A5/">#容斥</a>
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">#虚拟内存</a>
             
           </div>
         
@@ -720,15 +761,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/11/15/AtCoder%20Beginner%20Contest%20213/" target="_self">
-          AtCoder Beginner Contest 213
+        <a href="/2024/02/17/CSAPP/CSAPP%20proxylab/" target="_self">
+          CSAPP proxylab
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/15/AtCoder%20Beginner%20Contest%20213/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20proxylab/" target="_self">
         <div>
-          https://atcoder.jp/contests/abc213 E - Stronger Takahashi 题意 有一张 h×wh\times wh×w 的网格图，一些格子有障碍。高桥每次可以摧毁一个 2×22\times22×2 的区域内所有障碍，求从 (1,1)(1,1)(1,1) 走到 (h,w)(h,w)(h,w) 所需要的最小摧毁次数。 数据范围：2≤h,w≤5002\leq h
+          不是很有趣，但综合性比较强的lab。 phase1 基本参考 tiny 的代码进行编写即可。区别在于，服务代理的 doit 后半部分需要将请求头传给服务端，并从服务端读取数据返回给客户端。 phase 2 同样参考课本上的代码，创建线程并在线程中完成 doit。需要注意的是，driver.sh 中第 301 行需要修改为 1python3 nop-server.py $&#123;nop_port
         </div>
       </a>
 
@@ -736,8 +777,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-15 09:50" pubdate>
-              2023-11-15
+            <time datetime="2024-02-17 10:11" pubdate>
+              2024-02-17
             </time>
           </div>
         
@@ -752,7 +793,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
+  <a href="/categories/system/" class="category-chain-item">system</a>
   
   
 
@@ -767,76 +808,15 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/01bfs/">#01bfs</a>
+              <a href="/tags/CSAPP/">#CSAPP</a>
             
-              <a href="/tags/SA/">#SA</a>
+              <a href="/tags/cache/">#cache</a>
             
-              <a href="/tags/%E7%8A%B6%E5%8E%8Bdp/">#状压dp</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86/">#网络代理</a>
             
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/11/14/AtCoder%20Beginner%20Contest%20212/" target="_self">
-          AtCoder Beginner Contest 212
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/14/AtCoder%20Beginner%20Contest%20212/" target="_self">
-        <div>
-          https://atcoder.jp/contests/abc212 F - Greedy Takahashi 题意 有 nnn 座城市，mmm 辆公交车。第 iii 辆公交车从 aia_iai​ 开往 bib_ibi​，出发时间为 si+0.5s_i+0.5si​+0.5，到达时间为 ti+0.5t_i+0.5ti​+0.5。当高桥到达某座城市时，他会等待直到第一辆公交车到达，并坐上这辆公交，如
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-14 13:13" pubdate>
-              2023-11-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">#网络编程</a>
             
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/ACM/" class="category-chain-item">ACM</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%80%8D%E5%A2%9E/">#倍增</a>
-            
-              <a href="/tags/%E9%98%B6%E4%B8%8E%E5%8E%9F%E6%A0%B9/">#阶与原根</a>
-            
-              <a href="/tags/FWT/">#FWT</a>
+              <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">#并发编程</a>
             
           </div>
         
@@ -848,7 +828,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
