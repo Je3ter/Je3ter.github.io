@@ -23,12 +23,14 @@
 <meta property="og:site_name" content="Je3ter&#39;s Blog">
 <meta property="og:description" content="仔细考虑这条命令：linux&gt; fstatcheck 3 &lt; foo.txt 如果经过一点思考，可能会产生这样错误的结论：shell 打开 foo.txt 并分配了文件描述符 3。使用 fork 和 execve 创建了子进程 fstatcheck，它具有与 shell 相同的文件描述符表，即 3 同样引用 foo.txt。因此 fstatcheck 使用 Fstat 获取 foo.t">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://je3ter.github.io/img/e10.9%E5%9B%BE1.png">
 <meta property="article:published_time" content="2024-02-17T02:11:39.089Z">
-<meta property="article:modified_time" content="2024-02-17T07:42:24.346Z">
+<meta property="article:modified_time" content="2024-02-17T07:54:37.960Z">
 <meta property="article:author" content="Je3ter">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="shell">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://je3ter.github.io/img/e10.9%E5%9B%BE1.png">
   
   
   
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          656 字
+          634 字
         
       </span>
     
@@ -282,7 +284,7 @@
 <p>但事与愿违，具体的伪代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span> (fork() == <span class="hljs-number">0</span>) &#123;<br>  <span class="hljs-type">int</span> fd = open(filename, O_RDONLY);  <span class="hljs-comment">// Open the file</span><br>  close(<span class="hljs-number">0</span>);                           <span class="hljs-comment">// Close old stdin</span><br>  dup2(fd, <span class="hljs-number">0</span>);                        <span class="hljs-comment">// Copy fd as new stdin</span><br>  close(fd);                          <span class="hljs-comment">// Close the original fd</span><br>  execve(<span class="hljs-string">&quot;fstatcheck&quot;</span>, argv, envp);   <span class="hljs-comment">// Execute</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>foo.txt 确实被打开且分配了文件描述符 fd，但是在将 stdin 重定向到 foo.txt 后，fd 就被关闭了。也就是说，不存在文件描述符 3，而原先的引用 STDIN 的文件描述符 0 引用了 foo.txt。</p>
-<p>![图1](/img/e10.9 1.png)</p>
+<p><img src="/img/e10.9%E5%9B%BE1.png" srcset="/img/loading.gif" lazyload alt="图1"></p>
 <p>这张图很好地佐证了这一点：如果 0 引用的是 STDIN，那么类型应该为 other。</p>
 <p>参考资料：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/44357566/what-does-shell-do-when-we-redirect-using">https://stackoverflow.com/questions/44357566/what-does-shell-do-when-we-redirect-using</a></p>
 

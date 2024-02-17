@@ -232,7 +232,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20malloclab/" target="_self">
         <div>
-          首先先跑一遍课本上的代码，内存利用率和吞吐量都不是很好。尤其是吞吐量，非常糟糕。 ![图1](/img/malloclab 1.png) e9.17 将首次适配搜索改为下一次适配搜索。 为此，定义 rover 指向上一次分配的块。在 mm_init 中，rover 初始化为 heap_listp。编写 next_fit 用于实现下一次适配搜索算法：从 rover 开始，一直找到结尾块。再从 hea
+          首先先跑一遍课本上的代码，内存利用率和吞吐量都不是很好。尤其是吞吐量，非常糟糕。  e9.17 将首次适配搜索改为下一次适配搜索。 为此，定义 rover 指向上一次分配的块。在 mm_init 中，rover 初始化为 heap_listp。编写 next_fit 用于实现下一次适配搜索算法：从 rover 开始，一直找到结尾块。再从 heap_list 开始，一直找到 rover。 一个易错点
         </div>
       </a>
 
@@ -295,7 +295,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20attacklab/" target="_self">
         <div>
-          Phase 1 ![图1](/img/attacklab 1.png) getbuf 的栈帧如图所示，只需先输入 40 个字节，然后输入 touch1 的起始地址即可。 ![图2](/img/attacklab 2.png) Phase 2 需要在缓冲区内输入一段指令，从 getbuf 返回时开始执行这段指令。这段指令需要向 touch2 传入 cookie，并将返回地址设置为 touch2。 指
+          Phase 1  getbuf 的栈帧如图所示，只需先输入 40 个字节，然后输入 touch1 的起始地址即可。  Phase 2 需要在缓冲区内输入一段指令，从 getbuf 返回时开始执行这段指令。这段指令需要向 touch2 传入 cookie，并将返回地址设置为 touch2。 指令很容易书写 123movq $0x59b997fa,%rdipushq $0x4017ecret 查看 %
         </div>
       </a>
 
@@ -358,7 +358,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20bomblab/" target="_self">
         <div>
-          一个需要注意的地方是除了主函数以外的函数都不支持单步调试，需要加断点。否则即使用 step 也会直接运行到函数返回（通常会导致炸弹爆炸）。 phase 1 ![图1](/img/bomblab 1.png) 0x402400 中存放的就是目标字符串。 phase 2 ![图2](/img/bomblab 2.png) 记 %rsp 存放的地址为 0x0。 phase_2+14：检查 0x0 处存的
+          一个需要注意的地方是除了主函数以外的函数都不支持单步调试，需要加断点。否则即使用 step 也会直接运行到函数返回（通常会导致炸弹爆炸）。 phase 1  0x402400 中存放的就是目标字符串。 phase 2  记 %rsp 存放的地址为 0x0。 phase_2+14：检查 0x0 处存的值是否为 1。 phase_2+52：将 %rbx 指向 0x4 的位置，将 %rbp 指向 0x1
         </div>
       </a>
 
@@ -612,7 +612,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/02/17/CSAPP/CSAPP%20e3.4/" target="_self">
         <div>
-          练习题3.4 ![图1](/img/e3.4 1.png) 题目中提到“当执行强制类型转换既涉及大小变化又涉及C语言中符号变化时，操作应该先改变大小”，我们通过一个例子来说明。 考虑下面这段代码 1234567#include &lt;stdio.h&gt;int main()&#123;    char a=0xff;    printf(&quot;%u&quot;,(unsigned)a);
+          练习题3.4  题目中提到“当执行强制类型转换既涉及大小变化又涉及C语言中符号变化时，操作应该先改变大小”，我们通过一个例子来说明。 考虑下面这段代码 1234567#include &lt;stdio.h&gt;int main()&#123;    char a=0xff;    printf(&quot;%u&quot;,(unsigned)a);    return 0;&#125; 这里
         </div>
       </a>
 

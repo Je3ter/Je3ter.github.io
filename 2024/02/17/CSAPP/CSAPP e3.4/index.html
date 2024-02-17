@@ -16,19 +16,21 @@
   <meta name="author" content="Je3ter">
   <meta name="keywords" content="">
   
-    <meta name="description" content="练习题3.4 ![图1](&#x2F;img&#x2F;e3.4 1.png) 题目中提到“当执行强制类型转换既涉及大小变化又涉及C语言中符号变化时，操作应该先改变大小”，我们通过一个例子来说明。 考虑下面这段代码 1234567#include &lt;stdio.h&gt;int main()&amp;#123;    char a&#x3D;0xff;    printf(&quot;%u&quot;,(unsigned)a);">
+    <meta name="description" content="练习题3.4  题目中提到“当执行强制类型转换既涉及大小变化又涉及C语言中符号变化时，操作应该先改变大小”，我们通过一个例子来说明。 考虑下面这段代码 1234567#include &lt;stdio.h&gt;int main()&amp;#123;    char a&#x3D;0xff;    printf(&quot;%u&quot;,(unsigned)a);    return 0;&amp;#125; 这里">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSAPP e3.4">
 <meta property="og:url" content="https://je3ter.github.io/2024/02/17/CSAPP/CSAPP%20e3.4/index.html">
 <meta property="og:site_name" content="Je3ter&#39;s Blog">
-<meta property="og:description" content="练习题3.4 ![图1](&#x2F;img&#x2F;e3.4 1.png) 题目中提到“当执行强制类型转换既涉及大小变化又涉及C语言中符号变化时，操作应该先改变大小”，我们通过一个例子来说明。 考虑下面这段代码 1234567#include &lt;stdio.h&gt;int main()&amp;#123;    char a&#x3D;0xff;    printf(&quot;%u&quot;,(unsigned)a);">
+<meta property="og:description" content="练习题3.4  题目中提到“当执行强制类型转换既涉及大小变化又涉及C语言中符号变化时，操作应该先改变大小”，我们通过一个例子来说明。 考虑下面这段代码 1234567#include &lt;stdio.h&gt;int main()&amp;#123;    char a&#x3D;0xff;    printf(&quot;%u&quot;,(unsigned)a);    return 0;&amp;#125; 这里">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://je3ter.github.io/img/e3.4%E5%9B%BE1.png">
 <meta property="article:published_time" content="2024-02-17T02:11:39.089Z">
-<meta property="article:modified_time" content="2024-02-17T02:07:03.342Z">
+<meta property="article:modified_time" content="2024-02-17T07:54:30.838Z">
 <meta property="article:author" content="Je3ter">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="汇编">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://je3ter.github.io/img/e3.4%E5%9B%BE1.png">
   
   
   
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          589 字
+          568 字
         
       </span>
     
@@ -278,7 +280,7 @@
               <div class="markdown-body">
                 
                 <h2 id="练习题3-4">练习题3.4</h2>
-<p>![图1](/img/e3.4 1.png)</p>
+<p><img src="/img/e3.4%E5%9B%BE1.png" srcset="/img/loading.gif" lazyload alt="图1"></p>
 <p>题目中提到“当执行强制类型转换既涉及大小变化又涉及C语言中符号变化时，操作应该先改变大小”，我们通过一个例子来说明。</p>
 <p>考虑下面这段代码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">char</span> a=<span class="hljs-number">0xff</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%u&quot;</span>,(<span class="hljs-type">unsigned</span>)a);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>

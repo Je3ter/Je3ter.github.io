@@ -16,19 +16,26 @@
   <meta name="author" content="Je3ter">
   <meta name="keywords" content="">
   
-    <meta name="description" content="首先先跑一遍课本上的代码，内存利用率和吞吐量都不是很好。尤其是吞吐量，非常糟糕。 ![图1](&#x2F;img&#x2F;malloclab 1.png) e9.17 将首次适配搜索改为下一次适配搜索。 为此，定义 rover 指向上一次分配的块。在 mm_init 中，rover 初始化为 heap_listp。编写 next_fit 用于实现下一次适配搜索算法：从 rover 开始，一直找到结尾块。再从 hea">
+    <meta name="description" content="首先先跑一遍课本上的代码，内存利用率和吞吐量都不是很好。尤其是吞吐量，非常糟糕。  e9.17 将首次适配搜索改为下一次适配搜索。 为此，定义 rover 指向上一次分配的块。在 mm_init 中，rover 初始化为 heap_listp。编写 next_fit 用于实现下一次适配搜索算法：从 rover 开始，一直找到结尾块。再从 heap_list 开始，一直找到 rover。 一个易错点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSAPP malloclab">
 <meta property="og:url" content="https://je3ter.github.io/2024/02/17/CSAPP/CSAPP%20malloclab/index.html">
 <meta property="og:site_name" content="Je3ter&#39;s Blog">
-<meta property="og:description" content="首先先跑一遍课本上的代码，内存利用率和吞吐量都不是很好。尤其是吞吐量，非常糟糕。 ![图1](&#x2F;img&#x2F;malloclab 1.png) e9.17 将首次适配搜索改为下一次适配搜索。 为此，定义 rover 指向上一次分配的块。在 mm_init 中，rover 初始化为 heap_listp。编写 next_fit 用于实现下一次适配搜索算法：从 rover 开始，一直找到结尾块。再从 hea">
+<meta property="og:description" content="首先先跑一遍课本上的代码，内存利用率和吞吐量都不是很好。尤其是吞吐量，非常糟糕。  e9.17 将首次适配搜索改为下一次适配搜索。 为此，定义 rover 指向上一次分配的块。在 mm_init 中，rover 初始化为 heap_listp。编写 next_fit 用于实现下一次适配搜索算法：从 rover 开始，一直找到结尾块。再从 heap_list 开始，一直找到 rover。 一个易错点">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://je3ter.github.io/img/malloclab%E5%9B%BE1.png">
+<meta property="og:image" content="https://je3ter.github.io/img/malloclab%E5%9B%BE2.png">
+<meta property="og:image" content="https://je3ter.github.io/img/malloclab%E5%9B%BE3.png">
+<meta property="og:image" content="https://je3ter.github.io/img/malloclab%E5%9B%BE4.png">
+<meta property="og:image" content="https://je3ter.github.io/img/malloclab%E5%9B%BE5.png">
+<meta property="og:image" content="https://je3ter.github.io/img/malloclab%E5%9B%BE6.png">
 <meta property="article:published_time" content="2024-02-17T02:11:39.099Z">
-<meta property="article:modified_time" content="2024-02-17T02:04:41.502Z">
+<meta property="article:modified_time" content="2024-02-17T07:54:59.077Z">
 <meta property="article:author" content="Je3ter">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="虚拟内存">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://je3ter.github.io/img/malloclab%E5%9B%BE1.png">
   
   
   
@@ -223,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.3k 字
         
       </span>
     
@@ -234,7 +241,7 @@
         
         
         
-          21 分钟
+          20 分钟
         
       </span>
     
@@ -278,13 +285,13 @@
               <div class="markdown-body">
                 
                 <p>首先先跑一遍课本上的代码，内存利用率和吞吐量都不是很好。尤其是吞吐量，非常糟糕。</p>
-<p>![图1](/img/malloclab 1.png)</p>
+<p><img src="/img/malloclab%E5%9B%BE1.png" srcset="/img/loading.gif" lazyload alt="图1"></p>
 <h2 id="e9-17">e9.17</h2>
 <p>将首次适配搜索改为下一次适配搜索。</p>
 <p>为此，定义 rover 指向上一次分配的块。在 mm_init 中，rover 初始化为 heap_listp。编写 next_fit 用于实现下一次适配搜索算法：从 rover 开始，一直找到结尾块。再从 heap_list 开始，一直找到 rover。</p>
 <p>一个易错点是，我们还需要修改 coalesce。因为在执行合并时，有可能 rover 正指向当前块，但当前块被释放后与前一个块进行了合并。此时，需要让 rover 指向前一个块。</p>
 <p>可以看出吞吐量有了显著提升，并且内存利用率也没有下降（貌似与课本描述有些出入）。</p>
-<p>![图2](/img/malloclab 2.png)</p>
+<p><img src="/img/malloclab%E5%9B%BE2.png" srcset="/img/loading.gif" lazyload alt="图2"></p>
 <h2 id="e9-18">e9.18</h2>
 <p>只在空闲块同时维护头部和脚部，分配块只维护头部。</p>
 <p>具体地，使用次低位来标记前一个块是否被分配。</p>
@@ -293,14 +300,14 @@
 <p>coalesce 中，case 2 需要将头部和脚部都置为 2，case 3和case 4将头部和脚部的低三位设置为前一个块的低三位。</p>
 <p>extend_heap 中，新分配的块的倒数第二位需要继承结尾块的倒数第二位，在初始化时，结尾块低三位需要置为 3。</p>
 <p>改起来比较费力，调试了很久，出了很多错误。更加糟糕的是，结果比起原来还低了一分。猜测是优化掉结尾块并没有显著提高内存利用率，但是 place 中分割条件的更改可能不太适合 trace10 的模式。</p>
-<p>![图3](/img/malloclab 3.png)</p>
+<p><img src="/img/malloclab%E5%9B%BE3.png" srcset="/img/loading.gif" lazyload alt="图3"></p>
 <p>（试图把分割条件改回原来的 2*DSIZE，但是出现了 mm_realloc did not preserve the data from old block 的错误，没想明白是为什么）</p>
 <h2 id="Implicit-free-lists">Implicit free lists</h2>
 <p>基于上面的讨论，采用 next_fit，对分配块同样维护尾部（e9.18 的优化既难写，而且没什么效果）。</p>
 <h3 id="修改-realloc">修改 realloc</h3>
 <p>对 realloc 进行一点小修改：如果 size 未超过 oldsize，那么直接更改块的大小。更进一步的，如果后一个块为空闲块，判断条件变为 size 不超过 oldsize 加上空闲块的大小。</p>
 <p>可以看出 trace10 有了一点小改进，但是效果不是很明显。</p>
-<p>![图4](/img/malloclab 4.png)</p>
+<p><img src="/img/malloclab%E5%9B%BE4.png" srcset="/img/loading.gif" lazyload alt="图4"></p>
 <h3 id="修改-find-fit">修改 find_fit</h3>
 <p>因为当前内存利用率是限制得分的瓶颈，所以考虑多找几个空闲块，选择最优的那一个。但是经过测试，不仅内存利用率提升有限，而且吞吐量下降严重。</p>
 <h3 id="小结">小结</h3>
@@ -317,7 +324,7 @@
 <p>考虑何时调用 add 和 del：由于每次添加空闲块都需要调用 coalesce 函数，所以将 add_block 放在里面非常合适。当一个块被分配或和前后的块合并时，需要调用 del_block。</p>
 <p>find_fit 比较容易实现。先找到对应的头结点，开始执行首次适配。如果没有，就移动到下一个头结点。</p>
 <p>可以说是比较难实现，大概花了两天的时间，还完全推倒重构了一次，不过好在是独立实现了出来。但遗憾的是，它在性能上也没有什么提升（之前因为没有对改变大小的块重新插入链表导致得分反而下降，还玉玉了一阵子）。</p>
-<p>![图5](/img/malloclab 5.png)</p>
+<p><img src="/img/malloclab%E5%9B%BE5.png" srcset="/img/loading.gif" lazyload alt="图5"></p>
 <h3 id="一些改进">一些改进</h3>
 <ul>
 <li>segregated free lists 按照地址从小到大进行组织。</li>
@@ -330,7 +337,7 @@
 </li>
 </ul>
 <h2 id="最终分数">最终分数</h2>
-<p>![图6](/img/malloclab 6.png)</p>
+<p><img src="/img/malloclab%E5%9B%BE6.png" srcset="/img/loading.gif" lazyload alt="图6"></p>
 <p>最终获得了 88 分，最后几个 trace 表现得不是很好。</p>
 <p>这个实验做起来可以说是相当痛苦，不过还是独立完成了，取得了一个不错的结果。</p>
 <hr>

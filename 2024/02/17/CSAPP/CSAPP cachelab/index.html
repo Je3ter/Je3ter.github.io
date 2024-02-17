@@ -23,13 +23,15 @@
 <meta property="og:site_name" content="Je3ter&#39;s Blog">
 <meta property="og:description" content="Part A 由于不关心具体的块内偏移，所以 cache 可以这样设计：作为一个二维数组，第一维代表组号，第二维代表组内的行号，存放标记位和上一次访问的时间。每次操作时，读取和存放是等价的，直接在对应组号内遍历所有标记位，看是否有对应上的。否则看有无空缺，或是替换掉某一行。修改和上面类似，只需要添加一次命中记数就可以了。 读入命令行参数是一个比较陌生的话题： 1234567891011121314">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://je3ter.github.io/img/cachelab%E5%9B%BE1.png">
 <meta property="article:published_time" content="2024-02-17T02:11:39.089Z">
-<meta property="article:modified_time" content="2024-02-17T02:03:41.607Z">
+<meta property="article:modified_time" content="2024-02-17T07:54:16.655Z">
 <meta property="article:author" content="Je3ter">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="cache">
 <meta property="article:tag" content="分块">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://je3ter.github.io/img/cachelab%E5%9B%BE1.png">
   
   
   
@@ -301,7 +303,7 @@
 <p><strong>61 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span> 67</strong></p>
 <p>如此不规整的数字显然不适合分析了。直接暴力分块，发现块大小取 17 的时候取得最优结果。</p>
 <hr>
-<p>![图1](/img/cachelab 1.png)</p>
+<p><img src="/img/cachelab%E5%9B%BE1.png" srcset="/img/loading.gif" lazyload alt="图1"></p>
 <p>撒花！</p>
 
                 
